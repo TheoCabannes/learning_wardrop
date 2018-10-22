@@ -13,8 +13,8 @@ We are seeking to understand how communication emerges between autonomous vehicl
 6. AVs want to minimize their own travel time.
 
 ## References
-Emergence of Grounded Compositional Language in Multi-Agent Population, I.Mordatch
-Multiagent reinforcement learning in the Iterated Prisoner’s Dilemma, T.Sandholm
-On the convergence of no-regret learning in selfish routing, W. Krichene
-The Traffic Assignment Problem - Models and Methods, M.Patriksson
-Algorithmic game theory, Chapter 18, T.Roughgarden
+- Emergence of Grounded Compositional Language in Multi-Agent Population, I.Mordatch
+- Multiagent reinforcement learning in the Iterated Prisoner’s Dilemma, T.Sandholm
+- On the convergence of no-regret learning in selfish routing, W. Krichene
+- The Traffic Assignment Problem - Models and Methods, M.Patriksson
+- Algorithmic game theory, Chapter 18, T.Roughgarden
