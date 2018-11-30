@@ -3,13 +3,13 @@
 
 # # The network class
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
 
 
-# In[2]:
+# In[13]:
 
 
 class network:
@@ -43,6 +43,7 @@ class network:
         return g[:,3] + g[:,4]*f + g[:,5]*(f**2) + g[:,6]*(f**3) + g[:,7]*(f**4)
     
     def __marginal_cost(self, f):
+        f = f * self.__flow_per_veh
         g = self.__graph
         return g[:,4] + 2*g[:,5]*f + 3*g[:,6]*(f**2) + 4*g[:,7]*(f**3)
     
@@ -62,6 +63,7 @@ class network:
         tt_f = self.__travel_time(f)
         mc_f = self.__marginal_cost(f)
         self.__path_travel_time = self.__delta @ tt_f
+        self.__path_marginal_cost = self.__delta @ mc_f
         
     def travel_time(self, p):
         assert type(p) == int and p > -1 and p < self.nb_paths
@@ -70,5 +72,30 @@ class network:
     # marginal_cost = d[t(x_e)]/d[x_e]
     def marginal_cost(self, p):
         assert type(p) == int and p > -1 and p < self.nb_paths
-        return self.__marginal_cost[p]
+        return self.__path_marginal_cost[p]
+    
+
+
+# In[14]:
+
+
+net = network("Braess", 4)
+
+
+# In[15]:
+
+
+net.update_flow_from_dict({0:2,1:1,2:1})
+
+
+# In[16]:
+
+
+net.travel_time(1)
+
+
+# In[17]:
+
+
+net.marginal_cost(1)
 
