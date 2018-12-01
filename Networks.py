@@ -3,16 +3,19 @@
 
 # # The network class
 
-# In[2]:
+# In[19]:
 
 
 import numpy as np
 
 
-# In[13]:
+# In[20]:
 
 
 class network:
+    """
+    This class store the network characteristic.
+    """
     def __init__(self, network_name, nb_veh):
         """
         load the network which correspond to the network_name
@@ -36,7 +39,7 @@ class network:
             
         else:
             raise Exception("The network name is not known! The only options are: \'Braess\'. This error was raise in the instancation of the class network")
-    
+        
     def __travel_time(self, f):
         f = f * self.__flow_per_veh
         g = self.__graph
@@ -45,7 +48,7 @@ class network:
     def __marginal_cost(self, f):
         f = f * self.__flow_per_veh
         g = self.__graph
-        return g[:,4] + 2*g[:,5]*f + 3*g[:,6]*(f**2) + 4*g[:,7]*(f**3)
+        return g[:,4]*f + 2*g[:,5]*(f**2) + 3*g[:,6]*(f**3) + 4*g[:,7]*(f**4)
     
     @property
     def nb_paths(self):
@@ -76,26 +79,23 @@ class network:
     
 
 
-# In[14]:
+# In[23]:
 
 
 net = network("Braess", 4)
 
-
-# In[15]:
-
-
+print("---- TESTING ----")
+print("The Nash case")
 net.update_flow_from_dict({0:2,1:1,2:1})
+assert([net.travel_time(i) for i in range(3)] == [3.75, 3.75, 3.75])
+assert([net.marginal_cost(i) for i in range(3)] == [1.5, 0.75, 0.75])
+print([net.travel_time(i) for i in range(3)])
+print([net.marginal_cost(i) for i in range(3)])
 
-
-# In[16]:
-
-
-net.travel_time(1)
-
-
-# In[17]:
-
-
-net.marginal_cost(1)
+print("The social optimum case")
+net.update_flow_from_dict({0:0,1:2,2:2})
+assert([net.travel_time(i) for i in range(3)] == [3.25, 3.5, 3.5])
+assert([net.marginal_cost(i) for i in range(3)] == [1.0, 0.5, 0.5])
+print([net.travel_time(i) for i in range(3)])
+print([net.marginal_cost(i) for i in range(3)])
 
