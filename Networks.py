@@ -82,20 +82,21 @@ class network:
 # In[23]:
 
 
-net = network("Braess", 4)
+def Test_Braess():
+    net = network("Braess", 4)
 
-print("---- TESTING ----")
-print("The Nash case")
-net.update_flow_from_dict({0:2,1:1,2:1})
-assert([net.travel_time(i) for i in range(3)] == [3.75, 3.75, 3.75])
-assert([net.marginal_cost(i) for i in range(3)] == [1.5, 0.75, 0.75])
-print([net.travel_time(i) for i in range(3)])
-print([net.marginal_cost(i) for i in range(3)])
+    print("---- TESTING ----")
+    print("The Nash case")
+    net.update_flow_from_dict({0:2,1:1,2:1})
+    assert([net.travel_time(i) for i in range(3)] == [3.75, 3.75, 3.75])
+    assert([net.marginal_cost(i) for i in range(3)] == [1.5, 0.75, 0.75])
+    print([net.travel_time(i) for i in range(3)])
+    print([net.marginal_cost(i) for i in range(3)])
 
-print("The social optimum case")
-net.update_flow_from_dict({0:0,1:2,2:2})
-assert([net.travel_time(i) for i in range(3)] == [3.25, 3.5, 3.5])
-assert([net.marginal_cost(i) for i in range(3)] == [1.0, 0.5, 0.5])
-print([net.travel_time(i) for i in range(3)])
-print([net.marginal_cost(i) for i in range(3)])
+    print("The social optimum case")
+    net.update_flow_from_dict({0:0,1:2,2:2})
+    assert([net.travel_time(i) for i in range(3)] == [3.25, 3.5, 3.5])
+    assert([net.marginal_cost(i) for i in range(3)] == [1.0, 0.5, 0.5])
+    print([net.travel_time(i) for i in range(3)])
+    print([net.marginal_cost(i) for i in range(3)])
 
